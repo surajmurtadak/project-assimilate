@@ -1,0 +1,19 @@
+.align-right{
+  justify-content: flex-end ;
+}
+.movie-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.box{
+  flex: 0 0 18rem;
+  color: aliceblue;
+  background-color: rgb(12, 120, 156);
+}
+.bg{
+  background-color: transparent;
+  color: rgba(240, 248, 255, 0.729);
+}
