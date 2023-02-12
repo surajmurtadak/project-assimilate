@@ -1,16 +1,23 @@
+// import React,{useState, useEffect, Component} from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import MoviesContainer from './components/MoviesComponent';
 import SubNav from './components/SubNav';
+import Upload from './components/Upload';
+import {BrowserRouter,Route, Routes} from 'react-router-dom';
 
 function App() {
+
   return (
     <>
-      <Navbar/>
-      <SubNav/>
-      <div className='container my-3'>
-        <MoviesContainer/>
-      </div>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+          <Route path= "/" element={<><SubNav/><MoviesContainer/></>} />
+          <Route path= "/upload" element={<Upload/>} />
+          <Route path= "/movie" element={<><SubNav/><MoviesContainer/></>} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }

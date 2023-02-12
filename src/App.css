@@ -21,3 +21,15 @@
   gap:5px;
   margin-top: 10px;
 }
+.center{
+  width:30rem;
+  padding: 2rem;
+}
+.color{
+  color: rgba(255, 255, 255, 0.45);
+}
+.color:hover, .color:focus{
+  color: white;
+  border: none;
+  outline: none;
+}

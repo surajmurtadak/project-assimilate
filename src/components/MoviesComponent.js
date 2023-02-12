@@ -1,12 +1,25 @@
 import '../App.css';
-import React from 'react';
-import data from '../movies.json';
+import React,{useState, useEffect} from 'react';
+// import data from '../movies.json';
+import axios from 'axios';
+
 export default function MoviesContainer(){
+
+  const [movies, setMovies]= useState([]);
+
+  useEffect(()=>{
+    fetchData();
+  },[]);
+  const fetchData = async()=>{
+    return await axios.get("http://localhost:5000/send",)
+    .then((response)=> setMovies(response.data)).catch((err)=>console.log(err));
+    // .then((response)=>{ console.log(response.data)}).catch((err)=>console.log(err));
+  }
     return(
-       <div className='movie-container'>
-          {data.map(movie => {
+       <div className='movie-container container my-3'>
+          {movies.map(movie => {
             return(
-            <div className="card box" style={{width: "18rem"}}>
+            <div className="card box" key={movie._id} style={{width: "18rem"}}>
                 <img src="/MovieLogo.png" className="card-img-top" alt="MovieLogo"/>
                 <div className="card-body">
                   <h4 className="card-title">{movie.name}</h4>
