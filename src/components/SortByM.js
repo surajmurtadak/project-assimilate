@@ -10,7 +10,7 @@ export default function MoviesContainer(){;
   },[]);
 
   const fetchData = async()=>{
-    return await axios.get("http://localhost:8000/send",)
+    return await axios.get("http://localhost:8000/sortByMovie",)
     .then((response)=> setMovies(response.data)).catch((err)=>console.log(err));
   }
     return(

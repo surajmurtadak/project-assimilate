@@ -20,19 +20,14 @@ export default function Upload() {
 
   const onSubmits = async(event)=>{
     event.preventDefault();
-    const {movieName,dirName,IMDB,popularity} = movie;
+    const {movieName,dirName,IMDB,popularity,genre} = movie;
 
-    const data = {'movieName':movieName,'dirName':dirName,'IMDB':IMDB,'popularity':popularity};
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'text/json',
-        'Access-Control-Allow-Credentials': true
-
-      };
+    const data = {'movieName':movieName,'dirName':dirName,'IMDB':IMDB,'popularity':popularity,'genre':genre};
       
         axios.post("http://localhost:8000/accept",data)
         .then(response=>{
             console.log(response)
+            window.alert("Uploaded Successfully");
         });
 
      }
@@ -94,41 +89,18 @@ export default function Upload() {
           />
           </div>
         </div>
-        <label htmlFor="btn-check">Genre</label>
-        <div
-          className="btn-group d-flex justify-content-center round"
-          role="group"
-          aria-label="Basic checkbox toggle button group"
-        >
-          <input
-            type="checkbox"
-            className="btn-check"
-            id="btncheck1"
-            autoComplete="off"
-          />
-          <label className="btn btn-outline-primary" htmlFor="btncheck1">
-            Action
-          </label>
 
+        <div className="mb-3">
           <input
-            type="checkbox"
-            className="btn-check"
-            id="btncheck2"
-            autoComplete="off"
+            type="text"
+            name="genre"
+            value={movie.genre}
+            onChange={MovieFunc}
+            className="form-control rounded"
+            placeholder="Genre ( separate using , )"
+            id="exampleInputPassword1"
+            required
           />
-          <label className="btn btn-outline-primary" htmlFor="btncheck2">
-            Drama
-          </label>
-
-          <input
-            type="checkbox"
-            className="btn-check"
-            id="btncheck3"
-            autoComplete="off"
-          />
-          <label className="btn btn-outline-primary" htmlFor="btncheck3">
-            Romance
-          </label>
         </div>
 
         <div className="d-grid gap-2 col-6 mx-auto my-4">

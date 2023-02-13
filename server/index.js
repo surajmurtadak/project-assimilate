@@ -29,62 +29,42 @@ const movieSchema = new mongoose.Schema({
 
 const movieCol = mongoose.model("movieCollection",movieSchema);
 
-app.get("/send",(req,res)=>{
-
-    movieCol.find({},(err,data)=>{
-        if(err) console.log(err);
-        else {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header('Content-Type', 'text/html');
-            res.header("Access-Control-Allow-Credentials", true);
-            res.send(data);
-        }
-    });
+app.get("/send",async(req,res)=>{
+    const data = await movieCol.find({});
+    res.send(data);
 });
 
-app.get("/movie",async(req,res)=>{
-
+app.get("/sortByMovie",async(req,res)=>{
       const data = await movieCol.find({}).sort({name:1});
       res.send(data);
-    //    ,(err,data)=>{
-    //     if(err) console.log(err);
-    //     else {
-    //         res.header("Access-Control-Allow-Origin", "*");
-    //         res.header('Content-Type', 'text/html');
-    //         res.header("Access-Control-Allow-Credentials", true);
-    //         res.send(data);
-    //     }
-    // });
 });
 
-app.get("/popular",(req,res)=>{
-
-    movieCol.find({},(err,data)=>{
-        if(err) console.log(err);
-        else {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header('Content-Type', 'text/html');
-            res.header("Access-Control-Allow-Credentials", true);
-            res.send(data);
-        }
-    });
+app.get("/sortByPopularity",async(req,res)=>{
+    const data = await movieCol.find({}).sort({popularity:-1});
+    res.send(data);
 });
 
-app.get("/imdb",(req,res)=>{
+app.get("/sortByIMDB",async(req,res)=>{
+    const data = await movieCol.find({}).sort({imdbScore:-1});
+    res.send(data);
+});
 
-    movieCol.find({},(err,data)=>{
-        if(err) console.log(err);
-        else {
-            res.send(data);
-        }
+app.get("/findData",async(req,res)=>{
+    const data = await movieCol.find({
+        
     });
+    res.send(data);
 });
 
 app.post("/accept",(req,res)=>{
+
+    let genreList = req.body.genre;
+    genreList = genreList.split(",");
+
     const movie1 = new movieCol({
         popularity : req.body.popularity ,
         director : req.body.dirName,
-        genre:[],
+        genre : genreList,
         imdbScore : req.body.IMDB,
         name : req.body.movieName
     });
@@ -97,7 +77,14 @@ app.post("/accept",(req,res)=>{
     
 });
 
-// app.
+app.post("/accept",(req,res)=>{
+
+    let genreList = req.body.genre;
+    genreList = genreList.split(",");
+
+
+    console.log(req.body);  
+});
 
 app.listen(8000,function(err){
     if(err) console.log(err)

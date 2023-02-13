@@ -33,3 +33,6 @@
   border: none;
   outline: none;
 }
+.clr:hover{
+  color: white;
+}
