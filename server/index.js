@@ -75,17 +75,25 @@ app.get("/imdb",(req,res)=>{
     movieCol.find({},(err,data)=>{
         if(err) console.log(err);
         else {
-            // res.header("Access-Control-Allow-Origin", "*");
-            // res.header('Content-Type', 'text/html');
-            // res.header("Access-Control-Allow-Credentials", true);
             res.send(data);
         }
     });
 });
 
 app.post("/accept",(req,res)=>{
+    const movie1 = new movieCol({
+        popularity : req.body.popularity ,
+        director : req.body.dirName,
+        genre:[],
+        imdbScore : req.body.IMDB,
+        name : req.body.movieName
+    });
+    movie1.save((err)=>{
+        if(err) console.log(err);
+        else res.send(req.body);
+    });
     console.log(req.body);
-    res.send(req.body);
+    
     
 });
 

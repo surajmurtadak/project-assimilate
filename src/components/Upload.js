@@ -35,26 +35,6 @@ export default function Upload() {
             console.log(response)
         });
 
-        //     const response = await fetch("http://localhost:5000/accept",{
-        //     method : "POST",
-        //     headers: {
-        //     "Content-Type" : "application/json",
-        //     "Access-Control-Allow-Origin": "*",
-        //     "Access-Control-Allow-Credentials": true
-        //     },
-        //     body : JSON.stringify({ movieName:movieName,dirName:dirName,IMDB:IMDB,popularity:popularity}) });
-
-        //     const data = await response.json();
-
-        //     if(data.status===422 || !data){
-        //         window.alert("Something Went Wrong");
-        //         console.log("Something Went Wrong");
-        //     }
-        //     else{
-        //         window.alert("Sucessfully Register");
-        //         console.log("Sucessfully Register");
-        //         navigate.push("/movie");
-        //     }
      }
 
   return (
