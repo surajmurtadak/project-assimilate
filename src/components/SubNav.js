@@ -1,13 +1,21 @@
 import '../App.css';
+
+let select;
 export default function SubNav(){
+
+const handleChange= event => {
+    select = event.target.value;
+    console.log(select)
+}
+
     return(
         <div className="sub-nav justify-content-center">
             <div className="items">
-                <select className="form-select" placeholder="HELLO" >
+                <select className="form-select" onChange={handleChange} id="sortBy" placeholder="HELLO" >
                     <option defaultValue disabled="disabled">sort by</option>
-                    <option value="MovieName">Movie Name</option>
-                    <option value="Popu;arity">Popularity</option>
-                    <option value="IMDB">IMDB</option>
+                    <option value="MovieName" >Movie Name</option>
+                    <option value="Popularity" >Popularity</option>
+                    <option value="IMDB" >IMDB</option>
                 </select>
             </div>
             <div className="items">
@@ -20,3 +28,5 @@ export default function SubNav(){
         </div>
     )
 }
+
+export {select};

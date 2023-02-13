@@ -30,14 +30,10 @@ export default function Upload() {
 
       };
       
-        axios.post("/accept",data,{headers})
+        axios.post("http://localhost:8000/accept",data)
         .then(response=>{
-            console.log(response.config.data);
-            console.log(data)
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+            console.log(response)
+        });
 
         //     const response = await fetch("http://localhost:5000/accept",{
         //     method : "POST",

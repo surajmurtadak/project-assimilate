@@ -1,17 +1,18 @@
 import '../App.css';
 import React,{useState, useEffect} from 'react';
+import {select} from '../components/SubNav';
 // import data from '../movies.json';
 import axios from 'axios';
 
-export default function MoviesContainer(){
-
+export default function MoviesContainer(){;
   const [movies, setMovies]= useState([]);
 
   useEffect(()=>{
     fetchData();
-  },[]);
+  },[movies]);
+
   const fetchData = async()=>{
-    return await axios.get("http://localhost:5000/send",)
+    return await axios.get("http://localhost:8000/send",)
     .then((response)=> setMovies(response.data)).catch((err)=>console.log(err));
     // .then((response)=>{ console.log(response.data)}).catch((err)=>console.log(err));
   }
@@ -24,6 +25,7 @@ export default function MoviesContainer(){
                 <div className="card-body">
                   <h4 className="card-title">{movie.name}</h4>
                   <h6 className="card-text">Director:  {movie.director}</h6>
+                  <p>a:{select}</p>
                 
                 <ul className="list-group list-group-flush ">
                   <li className="list-group-item bg">Popularity: {movie.popularity}</li>
