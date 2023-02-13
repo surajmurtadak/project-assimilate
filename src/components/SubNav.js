@@ -2,7 +2,6 @@ import '../App.css';
 import {Link} from 'react-router-dom'
 import React,{useState} from 'react';
 import axios from 'axios';
-let select;
 export default function SubNav(){
     const [search, setSearch] = useState({
         searchName:""
@@ -18,7 +17,7 @@ export default function SubNav(){
     
         const data = {'searchName':searchName};
           
-            axios.post("http://localhost:8000/accept",data)
+            axios.post("http://localhost:8000/searchData",data)
             .then(response=>{
                 console.log(response)
             });
@@ -44,7 +43,7 @@ export default function SubNav(){
 
             <div className="items">
                 <form className="d-flex gap-1" role="search" onSubmit={onSubmits}>
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="dirName"
+                    <input className="form-control me-2" type="search" placeholder="Search Movie Name" aria-label="Search" name="dirName"
             value={search.searchName}
             onChange={searchFunc} />
                     <button className="btn btn-outline-success" type="submit">Search</button>
@@ -54,5 +53,3 @@ export default function SubNav(){
         </div>
     )
 }
-
-export {select};

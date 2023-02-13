@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
+const { response } = require('express');
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -51,7 +52,7 @@ app.get("/sortByIMDB",async(req,res)=>{
 
 app.get("/findData",async(req,res)=>{
     const data = await movieCol.find({
-        
+
     });
     res.send(data);
 });
@@ -77,13 +78,14 @@ app.post("/accept",(req,res)=>{
     
 });
 
-app.post("/accept",(req,res)=>{
+app.post("/searchData",async(req,res)=>{
 
-    let genreList = req.body.genre;
-    genreList = genreList.split(",");
+    let searchName = req.body.name;
+    
 
-
-    console.log(req.body);  
+    const data = await movieCol.find({name:searchName});
+    res.send(data);
+    console.log(req.body.searchName);  
 });
 
 app.listen(8000,function(err){
